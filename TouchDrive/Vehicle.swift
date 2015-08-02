@@ -9,5 +9,10 @@
 import SpriteKit
 
 class Vehicle {
-    let node = SKShapeNode(rectOfSize:CGSize(width:50, height:100));
+    var width = CGFloat(40);
+    var node = SKShapeNode();
+    
+    init() {
+        node = SKShapeNode(rectOfSize:CGSize(width:width, height:100));
+    }
 }

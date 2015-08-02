@@ -29,6 +29,7 @@ class GameScene2: SKScene {
         road.height = height;
         road.load();
         
+        myVehicle.width = width / 7;
         myVehicle.node.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame));
         
         self.addChild(myVehicle.node);
