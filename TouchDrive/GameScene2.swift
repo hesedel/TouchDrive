@@ -20,21 +20,23 @@ class GameScene2: SKScene {
         /* Setup your scene here */
         
         width = UIScreen.mainScreen().bounds.width;
-        height = width * (4/3);
+        height = width * (4 / 3);
         
-        road.node.position = CGPoint(x:CGRectGetMidX(self.frame), y:0);
+        road.node.position = CGPoint(x: CGRectGetMidX(self.frame), y: 0);
+        
         self.addChild(road.node);
         
-        road.width = width / 6;
+        road.width = width / 5;
         road.height = height;
         road.load();
         
-        myVehicle.width = width / 7;
-        myVehicle.node.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame));
+        myVehicle.setWidth(width / 15);
+        myVehicle.node.position = CGPoint(x: CGRectGetMidX(self.frame), y: CGRectGetMidY(self.frame));
+        previousLocationX = myVehicle.node.position.x;
         
         self.addChild(myVehicle.node);
         
-        myController.node.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame)-100);
+        myController.node.position = CGPoint(x: CGRectGetMidX(self.frame), y: CGRectGetMidY(self.frame) - (height / 3));
         
         self.addChild(myController.node);
     }
@@ -59,19 +61,30 @@ class GameScene2: SKScene {
         }
     }
     
+    var previousLocationX = CGFloat();
     override func touchesMoved(touches: Set<NSObject>, withEvent event: UIEvent) {
         for touch in (touches as! Set<UITouch>) {
             let location = touch.locationInNode(self);
             
             myController.node.position = location;
-            myVehicle.node.position = CGPoint(x:location.x, y:location.y+100);
+            myVehicle.node.position = CGPoint(x: location.x, y: location.y + (height / 3));
+            
+            var change = (previousLocationX - location.x) / (width / 30);
+            
+            var turn = SKAction.rotateByAngle(CGFloat(change), duration: NSTimeInterval(0));
+            myVehicle.node.runAction(turn);
+            
+            previousLocationX = location.x;
         }
     }
     
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
         
-        road.node.position.y -= 10;
+        var equalize = SKAction.rotateToAngle(CGFloat(0), duration: NSTimeInterval(1));
+        myVehicle.node.runAction(equalize);
+        
+        road.node.position.y -= 1;
         
         loadRoad();
     }

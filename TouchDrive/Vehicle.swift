@@ -9,10 +9,16 @@
 import SpriteKit
 
 class Vehicle {
-    var width = CGFloat(40);
     var node = SKShapeNode();
+    var body = SKShapeNode();
     
-    init() {
-        node = SKShapeNode(rectOfSize:CGSize(width:width, height:100));
+    init () {
+        node.addChild(body);
+    }
+    
+    func setWidth(width: CGFloat) {
+        node.path = SKShapeNode(circleOfRadius: width / 2).path;
+        body.path = SKShapeNode(rectOfSize: CGSize(width: width, height: width * 2)).path;
+        body.position.y = -(width / 2);
     }
 }
