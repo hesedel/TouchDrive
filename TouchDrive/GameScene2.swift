@@ -71,7 +71,12 @@ class GameScene2: SKScene {
             
             var change = (previousLocationX - location.x) / (width / 30);
             
-            var turn = SKAction.rotateByAngle(CGFloat(change), duration: NSTimeInterval(0));
+            var turn = SKAction();
+            
+            if (myVehicle.node.zRotation + change < 1.5 && myVehicle.node.zRotation + change > -1.5) {
+                turn = SKAction.rotateByAngle(CGFloat(change), duration: NSTimeInterval(0));
+            }
+            
             myVehicle.node.runAction(turn);
             
             previousLocationX = location.x;
