@@ -17,6 +17,10 @@
 		375EC35B1B6D8BBE00764955 /* TouchDriveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375EC35A1B6D8BBE00764955 /* TouchDriveTests.swift */; };
 		375EC3651B6D909000764955 /* GameScene2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375EC3641B6D909000764955 /* GameScene2.swift */; };
 		375EC3671B6D91C500764955 /* GameScene2.sks in Resources */ = {isa = PBXBuildFile; fileRef = 375EC3661B6D91C500764955 /* GameScene2.sks */; };
+		37B9F74B1B6E1937001588D5 /* Road.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B9F74A1B6E1937001588D5 /* Road.swift */; };
+		37B9F74D1B6E1B94001588D5 /* Vehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B9F74C1B6E1B94001588D5 /* Vehicle.swift */; };
+		37B9F74F1B6E1C75001588D5 /* MyVehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B9F74E1B6E1C75001588D5 /* MyVehicle.swift */; };
+		37B9F7511B6E1D62001588D5 /* MyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B9F7501B6E1D62001588D5 /* MyController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +48,10 @@
 		375EC35A1B6D8BBE00764955 /* TouchDriveTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchDriveTests.swift; sourceTree = "<group>"; };
 		375EC3641B6D909000764955 /* GameScene2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameScene2.swift; sourceTree = "<group>"; };
 		375EC3661B6D91C500764955 /* GameScene2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene2.sks; sourceTree = "<group>"; };
+		37B9F74A1B6E1937001588D5 /* Road.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Road.swift; sourceTree = "<group>"; };
+		37B9F74C1B6E1B94001588D5 /* Vehicle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vehicle.swift; sourceTree = "<group>"; };
+		37B9F74E1B6E1C75001588D5 /* MyVehicle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyVehicle.swift; sourceTree = "<group>"; };
+		37B9F7501B6E1D62001588D5 /* MyController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +93,7 @@
 		375EC33D1B6D8BBD00764955 /* TouchDrive */ = {
 			isa = PBXGroup;
 			children = (
+				37B9F7491B6E18F4001588D5 /* Models */,
 				375EC3401B6D8BBD00764955 /* AppDelegate.swift */,
 				375EC3421B6D8BBD00764955 /* GameScene.sks */,
 				375EC3661B6D91C500764955 /* GameScene2.sks */,
@@ -122,6 +131,17 @@
 				375EC3591B6D8BBE00764955 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		37B9F7491B6E18F4001588D5 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				37B9F74A1B6E1937001588D5 /* Road.swift */,
+				37B9F74C1B6E1B94001588D5 /* Vehicle.swift */,
+				37B9F74E1B6E1C75001588D5 /* MyVehicle.swift */,
+				37B9F7501B6E1D62001588D5 /* MyController.swift */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -226,10 +246,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				37B9F74D1B6E1B94001588D5 /* Vehicle.swift in Sources */,
+				37B9F74F1B6E1C75001588D5 /* MyVehicle.swift in Sources */,
+				37B9F74B1B6E1937001588D5 /* Road.swift in Sources */,
 				375EC3451B6D8BBD00764955 /* GameScene.swift in Sources */,
 				375EC3651B6D909000764955 /* GameScene2.swift in Sources */,
 				375EC3471B6D8BBD00764955 /* GameViewController.swift in Sources */,
 				375EC3411B6D8BBD00764955 /* AppDelegate.swift in Sources */,
+				37B9F7511B6E1D62001588D5 /* MyController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

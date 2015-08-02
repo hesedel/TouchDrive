@@ -9,47 +9,40 @@
 import SpriteKit
 
 class GameScene2: SKScene {
-    let road = SKNode()
-    var roads = [SKShapeNode]()
-    let myCar = SKShapeNode(rectOfSize:CGSize(width:50, height:100))
-    let myControl = SKShapeNode(circleOfRadius:25)
+    var width = CGFloat();
+    var height = CGFloat();
+    
+    let road = Road();
+    let myVehicle = MyVehicle();
+    let myController = MyController();
     
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
-        //let myLabel = SKLabelNode(fontNamed:"Chalkduster")
-        //myLabel.text = "Hello, World!";
-        //myLabel.fontSize = 65;
-        //myLabel.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame));
         
-        //self.addChild(myLabel)
+        width = UIScreen.mainScreen().bounds.width;
+        height = width * (4/3);
         
-        road.position = CGPoint(x:CGRectGetMidX(self.frame), y:0);
-        self.addChild(road)
+        road.node.position = CGPoint(x:CGRectGetMidX(self.frame), y:0);
+        self.addChild(road.node);
         
-        roads.append(SKShapeNode(rectOfSize:CGSize(width:100, height:self.frame.height)))
-        roads[roads.count-1].fillColor = UIColor(red:0, green:0, blue:255, alpha:1);
-        roads[roads.count-1].strokeColor = UIColor(red:0, green:0, blue:255, alpha:1);
-        roads[roads.count-1].position = CGPoint(x:0, y:CGRectGetMidY(self.frame));
-        road.addChild(roads[roads.count-1])
+        road.width = width / 6;
+        road.height = height;
+        road.load();
         
-        myCar.fillColor = UIColor(red:255, green:0, blue:0, alpha:1);
-        myCar.strokeColor = UIColor(red:255, green:0, blue:0, alpha:1);
-        myCar.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame));
+        myVehicle.node.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame));
         
-        self.addChild(myCar)
+        self.addChild(myVehicle.node);
         
-        myControl.fillColor = UIColor(red:0, green:255, blue:0, alpha:1);
-        myControl.strokeColor = UIColor(red:0, green:255, blue:0, alpha:1);
-        myControl.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame)-100);
+        myController.node.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame)-100);
         
-        self.addChild(myControl)
+        self.addChild(myController.node);
     }
     
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
         /* Called when a touch begins */
         
         for touch in (touches as! Set<UITouch>) {
-            let location = touch.locationInNode(self)
+            let location = touch.locationInNode(self);
             
             //let sprite = SKSpriteNode(imageNamed:"Spaceship")
             
@@ -67,29 +60,32 @@ class GameScene2: SKScene {
     
     override func touchesMoved(touches: Set<NSObject>, withEvent event: UIEvent) {
         for touch in (touches as! Set<UITouch>) {
-            let location = touch.locationInNode(self)
+            let location = touch.locationInNode(self);
             
-            myControl.position = location
-            myCar.position = CGPoint(x:location.x, y:location.y+100)
+            myController.node.position = location;
+            myVehicle.node.position = CGPoint(x:location.x, y:location.y+100);
         }
     }
     
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
         
-        road.position.y -= 10
+        road.node.position.y -= 10;
         
-        loadRoad()
+        loadRoad();
     }
     
     func loadRoad() {
-        if (roads.count - 1 == Int(floor(abs(road.position.y) / self.frame.height))) {
-            println(String(roads.count - 1) + " road loaded")
-            roads.append(SKShapeNode(rectOfSize:CGSize(width:100, height:self.frame.height)))
-            roads[roads.count-1].fillColor = UIColor(red:0, green:255, blue:255, alpha:1);
-            roads[roads.count-1].strokeColor = UIColor(red:0, green:0, blue:255, alpha:1);
-            roads[roads.count-1].position = CGPoint(x:0, y:CGRectGetMidY(self.frame) + (self.frame.height * CGFloat(roads.count-1)));
-            road.addChild(roads[roads.count-1])
+        var level = Int(floor(abs(road.node.position.y) / height));
+        
+        if (road.roads.count == level) {
+            road.unload();
+        }
+        
+        if (road.roads.count - 1 == level) {
+            println(String(road.roads.count - 1) + " road loaded");
+            road.load();
+            road.unload();
         }
     }
 }
