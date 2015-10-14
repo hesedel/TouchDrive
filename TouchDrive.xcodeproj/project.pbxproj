@@ -188,6 +188,8 @@
 		375EC3331B6D8BBD00764955 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftMigration = 0700;
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0640;
 				ORGANIZATIONNAME = "Pajaron Creative";
 				TargetAttributes = {

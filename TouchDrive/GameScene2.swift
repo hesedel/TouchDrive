@@ -41,10 +41,10 @@ class GameScene2: SKScene {
         self.addChild(myController.node);
     }
     
-    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         /* Called when a touch begins */
         
-        for touch in (touches as! Set<UITouch>) {
+        for touch in (touches) {
             let location = touch.locationInNode(self);
             
             //let sprite = SKSpriteNode(imageNamed:"Spaceship")
@@ -62,14 +62,14 @@ class GameScene2: SKScene {
     }
     
     var previousLocationX = CGFloat();
-    override func touchesMoved(touches: Set<NSObject>, withEvent event: UIEvent) {
-        for touch in (touches as! Set<UITouch>) {
+    override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        for touch in (touches) {
             let location = touch.locationInNode(self);
             
             myController.node.position = location;
             myVehicle.node.position = CGPoint(x: location.x, y: location.y + (height / 3));
             
-            var change = (previousLocationX - location.x) / (width / 30);
+            let change = (previousLocationX - location.x) / (width / 30);
             
             var turn = SKAction();
             
@@ -86,7 +86,7 @@ class GameScene2: SKScene {
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
         
-        var equalize = SKAction.rotateToAngle(CGFloat(0), duration: NSTimeInterval(1));
+        let equalize = SKAction.rotateToAngle(CGFloat(0), duration: NSTimeInterval(1));
         myVehicle.node.runAction(equalize);
         
         road.node.position.y -= 1;
@@ -95,14 +95,14 @@ class GameScene2: SKScene {
     }
     
     func loadRoad() {
-        var level = Int(floor(abs(road.node.position.y) / height));
+        let level = Int(floor(abs(road.node.position.y) / height));
         
         if (road.roads.count == level) {
             road.unload();
         }
         
         if (road.roads.count - 1 == level) {
-            println(String(road.roads.count - 1) + " road loaded");
+            print(String(road.roads.count - 1) + " road loaded");
             road.load();
             road.unload();
         }

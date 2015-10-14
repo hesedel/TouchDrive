@@ -15,7 +15,7 @@ class Road {
     var roads = [SKShapeNode]();
     
     func load() {
-        var road = SKShapeNode(rectOfSize:CGSize(width:width, height:height));
+        let road = SKShapeNode(rectOfSize:CGSize(width:width, height:height));
         
         road.fillColor = UIColor(red:255, green:0, blue:255, alpha:1);
         road.strokeColor = UIColor(red:0, green:0, blue:255, alpha:1);
@@ -23,7 +23,7 @@ class Road {
         roads.append(road);
         node.addChild(roads[roads.count - 1]);
         
-        println(String(node.children.count) + " roads present");
+        print(String(node.children.count) + " roads present");
     }
     
     func unload() {
@@ -31,6 +31,6 @@ class Road {
             roads[roads.count-3].removeFromParent();
         }
         
-        println(String(node.children.count) + " roads present");
+        print(String(node.children.count) + " roads present");
     }
 }
